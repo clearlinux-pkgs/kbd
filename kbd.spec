@@ -4,7 +4,7 @@
 #
 Name     : kbd
 Version  : 2.0.3
-Release  : 8
+Release  : 9
 URL      : http://ftp.altlinux.org/pub/people/legion/kbd/kbd-2.0.3.tar.gz
 Source0  : http://ftp.altlinux.org/pub/people/legion/kbd/kbd-2.0.3.tar.gz
 Summary  : Library to manage the Linux keymaps
@@ -16,6 +16,7 @@ Requires: kbd-locales
 Requires: kbd-doc
 BuildRequires : Linux-PAM-dev
 BuildRequires : bison
+BuildRequires : doxygen
 BuildRequires : flex
 BuildRequires : pkgconfig(check)
 BuildRequires : sed
