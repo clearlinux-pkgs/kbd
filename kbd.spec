@@ -4,7 +4,7 @@
 #
 Name     : kbd
 Version  : 2.0.4
-Release  : 11
+Release  : 12
 URL      : http://ftp.altlinux.org/pub/people/legion/kbd/kbd-2.0.4.tar.xz
 Source0  : http://ftp.altlinux.org/pub/people/legion/kbd/kbd-2.0.4.tar.xz
 Summary  : Library to manage the Linux keymaps
