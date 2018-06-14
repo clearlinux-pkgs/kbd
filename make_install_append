@@ -1,0 +1,2 @@
+mkdir -p %{buildroot}/usr/share/pam.d
+install -m 0644 src/vlock/vlock.pam %{buildroot}/usr/share/pam.d/vlock

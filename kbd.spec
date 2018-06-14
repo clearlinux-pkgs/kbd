@@ -4,7 +4,7 @@
 #
 Name     : kbd
 Version  : 2.0.4
-Release  : 13
+Release  : 14
 URL      : http://ftp.altlinux.org/pub/people/legion/kbd/kbd-2.0.4.tar.xz
 Source0  : http://ftp.altlinux.org/pub/people/legion/kbd/kbd-2.0.4.tar.xz
 Summary  : Library to manage the Linux keymaps
@@ -20,6 +20,7 @@ BuildRequires : doxygen
 BuildRequires : flex
 BuildRequires : pkgconfig(check)
 BuildRequires : sed
+Patch1: 0001-Add-custom-vlock-PAM-config.patch
 
 %description
 KBD [![Build Status](https://travis-ci.org/legionus/kbd.svg?branch=master)](https://travis-ci.org/legionus/kbd)
@@ -60,25 +61,33 @@ locales components for the kbd package.
 
 %prep
 %setup -q -n kbd-2.0.4
+%patch1 -p1
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1491788776
+export SOURCE_DATE_EPOCH=1529003288
 %configure --disable-static
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1491788776
+export SOURCE_DATE_EPOCH=1529003288
 rm -rf %{buildroot}
 %make_install
 %find_lang kbd
+## make_install_append content
+mkdir -p %{buildroot}/usr/share/pam.d
+install -m 0644 src/vlock/vlock.pam %{buildroot}/usr/share/pam.d/vlock
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -637,7 +646,6 @@ rm -rf %{buildroot}
 /usr/share/keymaps/mac/include/mac-linux-keys-bare.inc
 /usr/share/keymaps/mac/include/mac-qwerty-layout.inc
 /usr/share/keymaps/mac/include/mac-qwertz-layout.inc
-/usr/share/keymaps/ppc
 /usr/share/keymaps/sun/sun-pl-altgraph.map.gz
 /usr/share/keymaps/sun/sun-pl.map.gz
 /usr/share/keymaps/sun/sundvorak.map.gz
@@ -654,6 +662,7 @@ rm -rf %{buildroot}
 /usr/share/keymaps/sun/sunt5-uk.map.gz
 /usr/share/keymaps/sun/sunt5-us-cz.map.gz
 /usr/share/keymaps/sun/sunt6-uk.map.gz
+/usr/share/pam.d/vlock
 /usr/share/unimaps/8859-1.a0-ff.uni
 /usr/share/unimaps/8859-10.a0-ff.uni
 /usr/share/unimaps/8859-13.a0-ff.uni
@@ -720,7 +729,7 @@ rm -rf %{buildroot}
 /usr/share/unimaps/viscii.uni
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/man/man1/*
 %doc /usr/share/man/man5/*
 %doc /usr/share/man/man8/*
