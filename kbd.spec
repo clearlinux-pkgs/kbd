@@ -4,7 +4,7 @@
 #
 Name     : kbd
 Version  : 2.0.4
-Release  : 14
+Release  : 15
 URL      : http://ftp.altlinux.org/pub/people/legion/kbd/kbd-2.0.4.tar.xz
 Source0  : http://ftp.altlinux.org/pub/people/legion/kbd/kbd-2.0.4.tar.xz
 Summary  : Library to manage the Linux keymaps
@@ -68,7 +68,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1529003288
+export SOURCE_DATE_EPOCH=1529004236
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -80,7 +80,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1529003288
+export SOURCE_DATE_EPOCH=1529004236
 rm -rf %{buildroot}
 %make_install
 %find_lang kbd
@@ -646,6 +646,7 @@ install -m 0644 src/vlock/vlock.pam %{buildroot}/usr/share/pam.d/vlock
 /usr/share/keymaps/mac/include/mac-linux-keys-bare.inc
 /usr/share/keymaps/mac/include/mac-qwerty-layout.inc
 /usr/share/keymaps/mac/include/mac-qwertz-layout.inc
+/usr/share/keymaps/ppc
 /usr/share/keymaps/sun/sun-pl-altgraph.map.gz
 /usr/share/keymaps/sun/sun-pl.map.gz
 /usr/share/keymaps/sun/sundvorak.map.gz
