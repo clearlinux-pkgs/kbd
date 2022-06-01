@@ -1,5 +1,5 @@
 PKG_NAME := kbd
-URL = http://ftp.altlinux.org/pub/people/legion/kbd/kbd-2.2.0.tar.xz
+URL = https://github.com/legionus/kbd/archive/refs/tags/v2.4.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
