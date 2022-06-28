@@ -1,4 +1,4 @@
-From 246990835855bd3970a7cf8eb0abb667ae0749d3 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Patrick McCarty <patrick.mccarty@intel.com>
 Date: Thu, 14 Jun 2018 12:02:55 -0700
 Subject: [PATCH] Add custom vlock PAM config
@@ -29,6 +29,3 @@ index 0000000..5683631
 +
 +session  required       pam_limits.so
 +session  include        common-session
--- 
-2.17.1
-
